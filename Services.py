@@ -12,7 +12,7 @@ async def add_test(keys):
 
 
     with open(path, 'a') as file:
-        file.write(f"\n{last_id + 1} {keys}")
+        file.write(f"{last_id + 1} {keys}\n")
 
     return last_id + 1
 
