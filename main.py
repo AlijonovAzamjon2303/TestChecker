@@ -30,6 +30,10 @@ async def add_test_cmd(message: Message):
     else:
         await message.answer("@AzamjonAlijonov bilan bog'laning")
 
+@dp.message(Command("show_all_test"))
+async def show_all(message: Message):
+    await message.answer(f"{Services.show_all_test()}")
+
 @dp.message(lambda message: message.from_user.id == ADMIN)
 async def save_test(message: Message):
     test_keys = message.text.strip()  # Test javoblarini olish
@@ -42,10 +46,6 @@ async def save_test(message: Message):
     except Exception as e:
         print(f"Xatolik: {e}")  # Xatolik yuz bersa, uni konsolga chiqarish
         await message.answer("Testni saqlashda xatolik yuz berdi!")
-
-@dp.message(Command("show_all_test"))
-async def show_all(message: Message):
-    await message.answer(f"{Services.show_all_test()}")
 
 async def main():
     await dp.start_polling(bot)
