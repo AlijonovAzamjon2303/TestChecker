@@ -41,8 +41,11 @@ async def save_test(message: Message):
         await message.answer(f"Test {test_id} bilan saqlandi")  # Adminni xabardor qilish
     except Exception as e:
         print(f"Xatolik: {e}")  # Xatolik yuz bersa, uni konsolga chiqarish
-        await message.answer("1Testni saqlashda xatolik yuz berdi!")
+        await message.answer("Testni saqlashda xatolik yuz berdi!")
 
+@dp.message(Command("show_all_test"))
+async def show_all(message: Message):
+    await message.answer(f"{Services.show_all_test()}")
 
 async def main():
     await dp.start_polling(bot)

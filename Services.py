@@ -15,3 +15,8 @@ async def add_test(keys):
         file.write(f"{last_id + 1} {keys}")
 
     return last_id + 1
+
+async def show_all_test():
+    if os.path.exists(path):
+        with open(path, "r") as file:
+            return file.read()
