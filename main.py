@@ -26,6 +26,7 @@ async def start_cmd(message: Message):
 async def add_test_cmd(message: Message):
     if message.from_user.id == ADMIN:
         await message.answer("Test qo'shishingiz mumkin")
+        await message.answer("1a2b3c4d ... kabi test javoblarini kiriting")
     else:
         await message.answer("@AzamjonAlijonov bilan bog'laning")
 
