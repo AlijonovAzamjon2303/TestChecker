@@ -26,13 +26,12 @@ async def start_cmd(message: Message):
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
     if message.from_user.id == ADMIN:
-        await message.answer(f"id bilan test yaratildi")
         await message.answer("1a2b3c4d ... kabi test javoblarini kiriting")
     else:
         await message.answer("@AzamjonAlijonov bilan bog'laning")
 
 @dp.message(lambda message: message.from_user.id == ADMIN)
-async def add_test(message: Message):
+async def save_test(message: Message):
     test_id = await Services.add_test(message.text)
     await message.answer(f"{test_id} bilan saqlandi")
 
