@@ -33,7 +33,7 @@ async def add_test_cmd(message: Message):
 @dp.message(Command("show_all_test"))
 async def show_all(message: Message):
     tests = await Services.show_all_test()
-    await message.answer(f"{tests}")
+    await message.answer(f"<pre>{tests}</pre>", parse_mode="HTML")
 
 @dp.message(lambda message: message.from_user.id == ADMIN)
 async def save_test(message: Message):
