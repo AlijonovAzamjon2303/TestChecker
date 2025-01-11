@@ -24,9 +24,11 @@ async def start_cmd(message: Message):
 
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
+    global test_id
     if message.from_user.id == ADMIN:
-        await message.answer("Test qo'shishingiz mumkin")
+        await message.answer(f"{test_id} id bilan test yaratildi")
         await message.answer("1a2b3c4d ... kabi test javoblarini kiriting")
+        test_id += 1
     else:
         await message.answer("@AzamjonAlijonov bilan bog'laning")
 
