@@ -12,15 +12,15 @@ async def add_test(keys):
 
 
     with open(path, 'a') as file:
-        file.write(f"{last_id + 1} {keys}")
+        file.write(f"\n{last_id + 1} {keys}")
 
     return last_id + 1
 
 async def show_all_test():
-    tests = []
+    tests = ""
     if os.path.exists(path):
         with open(path, "r") as file:
-            tests = file.readlines()
+            tests = file.read()
 
     return tests
 
