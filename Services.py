@@ -2,7 +2,7 @@ import os
 
 path = "tests.txt"
 
-def add_test(keys):
+async def add_test(keys):
     last_id = 1
     if os.path.exists(path):
         with open(path, "r") as file:
