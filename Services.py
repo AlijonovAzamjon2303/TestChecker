@@ -17,9 +17,11 @@ async def add_test(keys):
     return last_id + 1
 
 async def show_all_test():
-    tests = "Bo'sh"
+    tests = "Teslar ro'yxati : \n"
     if os.path.exists(path):
         with open(path, "r") as file:
-            tests = file.read()
+            ls = file.readlines()
+            for line in ls:
+                tests += line + "\n"
 
     return tests
