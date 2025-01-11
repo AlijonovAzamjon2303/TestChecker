@@ -1,11 +1,12 @@
 import asyncio
 import logging
+import os
 
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from aiogram.types import Message
 
-from config import BOT_TOKEN
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
