@@ -13,7 +13,6 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
 
-tests = {}
 ADMIN = 6335120359
 
 @dp.message(Command("start"))
@@ -33,7 +32,8 @@ async def add_test_cmd(message: Message):
 @dp.message(Command("show_all_test"))
 async def show_all(message: Message):
     tests = await Services.show_all_test()
-    await message.answer(f"<pre>{tests}</pre>", parse_mode="HTML")
+    for test in tests:
+        await message.answer(f"1{test}")
 
 @dp.message(lambda message: message.from_user.id == ADMIN)
 async def save_test(message: Message):

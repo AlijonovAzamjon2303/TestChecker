@@ -17,12 +17,10 @@ async def add_test(keys):
     return last_id + 1
 
 async def show_all_test():
-    tests = "Testlar ro'yxati: \n"
+    tests = []
     if os.path.exists(path):
         with open(path, "r") as file:
-            ls = file.readlines()
-            for line in ls:
-                tests += f"{line.strip()}\n"  # strip() yordamida ortiqcha yangi qator belgilarini olib tashlash
+            tests = file.readlines()
 
     return tests
 
