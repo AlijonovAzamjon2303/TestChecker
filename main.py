@@ -15,7 +15,7 @@ dp = Dispatcher()
 async def start_cmd(message: Message):
     user_id = message.from_user.id
     user_first_name = message.from_user.first_name
-    await message.answer(f"Assalomu alaykum {user_first_name} sizning id : {user_id}")
+    await message.answer(f"Assalomu alaykum {user_first_name} sizning id: {user_id}")
 
 async def main():
     await dp.start_polling(bot)
