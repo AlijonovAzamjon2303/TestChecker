@@ -17,6 +17,9 @@ async def add_test(keys):
     return last_id + 1
 
 async def show_all_test():
+    tests = "Bo'sh"
     if os.path.exists(path):
         with open(path, "r") as file:
-            return file.read()
+            tests = file.read()
+
+    return tests
