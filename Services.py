@@ -22,6 +22,6 @@ async def show_all_test():
         with open(path, "r") as file:
             ls = file.readlines()
             for line in ls:
-                tests += line + "\n"
+                tests += f"{line}\n"
 
     return tests
