@@ -39,7 +39,7 @@ async def save_test(message: Message):
         test_id = await Services.add_test(test_keys)  # Testni saqlash
         print(f"Test ID: {test_id}")  # Yangi test ID sini konsolga chiqarish
         await message.answer(f"Test {test_id} bilan saqlandi")  # Adminni xabardor qilish
-    except Exception as e:
+    except PermissionError as e:
         print(f"Xatolik: {e}")  # Xatolik yuz bersa, uni konsolga chiqarish
         await message.answer("Testni saqlashda xatolik yuz berdi!")
 
