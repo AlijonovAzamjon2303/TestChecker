@@ -22,6 +22,10 @@ async def start_cmd(message: Message):
     await message.answer(f"Assalomu alaykum {user_first_name} sizning id: {user_id}")
     await message.answer("Quyidagi buyruqlardan birini tanlang\n/add_test\n/check_test")
 
+@dp.message(Command("clear"))
+async def clear(message: Message):
+    await Services.clear()
+
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
     if message.from_user.id == ADMIN:
