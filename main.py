@@ -6,13 +6,14 @@ from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from aiogram.types import Message
 
+import Services
+
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
 
 tests = {}
-test_id = 1000
 ADMIN = 6335120359
 
 @dp.message(Command("start"))
@@ -24,13 +25,17 @@ async def start_cmd(message: Message):
 
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
-    global test_id
     if message.from_user.id == ADMIN:
-        await message.answer(f"{test_id} id bilan test yaratildi")
+        await message.answer(f"id bilan test yaratildi")
         await message.answer("1a2b3c4d ... kabi test javoblarini kiriting")
-        test_id += 1
     else:
         await message.answer("@AzamjonAlijonov bilan bog'laning")
+
+@dp.message(lambda message: message.from_user.id == ADMIN)
+async def add_test(message: Message):
+    test_id = await Services.add_test(message.text)
+    await message.answer(f"{test_id} bilan saqlandi")
+
 
 async def main():
     await dp.start_polling(bot)
