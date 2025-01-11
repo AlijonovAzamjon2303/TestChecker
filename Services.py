@@ -27,3 +27,5 @@ async def show_all_test():
 async def clear():
     if os.path.exists(path):
         os.remove(path)
+    else:
+        return 0

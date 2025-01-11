@@ -24,7 +24,9 @@ async def start_cmd(message: Message):
 
 @dp.message(Command("clear"))
 async def clear(message: Message):
-    await Services.clear()
+    ans = await Services.clear()
+    if ans == 0:
+        await message.answer("Baza tozalandi")
 
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
