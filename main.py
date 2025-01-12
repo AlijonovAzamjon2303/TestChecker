@@ -35,7 +35,7 @@ async def clear(message: Message):
 async def show_acts(message: Message):
     acts = await Services.show_all_act()
 
-    await message.answer(acts)
+    await message.answer(acts, parse_mode="Markdown")
 
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
