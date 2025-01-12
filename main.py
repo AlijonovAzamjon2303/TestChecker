@@ -48,7 +48,7 @@ async def clear(message: Message):
 async def show_acts(message: Message):
     path_help = "helper.txt"
     cmd = message.text.split()
-    ans = ""
+    ans = "Hali javoblar jo'natilmagan"
     acts = await Services.show_all_act()
 
     if len(cmd) == 1:
