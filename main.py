@@ -33,30 +33,7 @@ async def clear(message: Message):
 
 @dp.message(Command("show_all_act"))
 async def show_acts(message: Message):
-    # Servisdan ma'lumotlarni olamiz
-    acts = await Services.show_all_act()
 
-    # Har bir qatorni ajratib olamiz
-    lines = acts.split("\n")
-
-    # Har bir qatorni to'g'ri escape qilish
-    escaped_lines = [
-        line.replace('\\', '\\\\')
-            .replace('_', '\\_')
-            .replace('*', '\\*')
-            .replace('`', '\\`')
-        for line in lines
-    ]
-
-    # Qayta formatlangan qatorlarni birlashtiramiz
-    escaped_acts = "\n".join(escaped_lines)
-
-    # Agar xabar uzun bo'lsa, uni bo'lib yuboramiz
-    if len(escaped_acts) > 4096:
-        for chunk in [escaped_acts[i:i+4096] for i in range(0, len(escaped_acts), 4096)]:
-            await message.answer(f"```\n{chunk}\n```", parse_mode="Markdown")
-    else:
-        await message.answer(f"```\n{escaped_acts}\n```", parse_mode="Markdown")
 
 
 
@@ -70,8 +47,8 @@ async def add_test_cmd(message: Message):
 
 @dp.message(Command("show_all_test"))
 async def show_all(message: Message):
-    tests = await Services.show_all_test()
-    await message.answer(f"{tests}")
+
+    await message.answer_document(Services.path_act)
 
 @dp.message(lambda message: message.from_user.id in ADMINS)
 async def save_test(message: Message):
