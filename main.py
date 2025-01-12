@@ -13,7 +13,7 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
 
-ADMINS = [6335120359]
+ADMINS = [6335120359, 1217116448]
 
 @dp.message(Command(commands=["start", "help"]))
 async def start_cmd(message: Message):
