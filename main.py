@@ -36,14 +36,29 @@ async def show_acts(message: Message):
     # Servisdan ma'lumotlarni olamiz
     acts = await Services.show_all_act()
 
-    # Maxsus belgilarni qochirish (escape qilish)
-    escaped_acts = acts.replace('\\', '\\\\') \
-                       .replace('_', '\\_') \
-                       .replace('*', '\\*') \
-                       .replace('`', '\\`')
+    # Har bir qatorni ajratib olamiz
+    lines = acts.split("\n")
 
-    # Matnni Markdown formatida yuboramiz
-    await message.answer(f"```\n{escaped_acts}\n```", parse_mode="Markdown")
+    # Har bir qatorni to'g'ri escape qilish
+    escaped_lines = [
+        line.replace('\\', '\\\\')
+            .replace('_', '\\_')
+            .replace('*', '\\*')
+            .replace('`', '\\`')
+        for line in lines
+    ]
+
+    # Qayta formatlangan qatorlarni birlashtiramiz
+    escaped_acts = "\n".join(escaped_lines)
+
+    # Agar xabar uzun bo'lsa, uni bo'lib yuboramiz
+    if len(escaped_acts) > 4096:
+        for chunk in [escaped_acts[i:i+4096] for i in range(0, len(escaped_acts), 4096)]:
+            await message.answer(f"```\n{chunk}\n```", parse_mode="Markdown")
+    else:
+        await message.answer(f"```\n{escaped_acts}\n```", parse_mode="Markdown")
+
+
 
 
 @dp.message(Command("add_test"))
