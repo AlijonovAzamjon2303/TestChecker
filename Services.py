@@ -39,7 +39,7 @@ async def add_ans(chat_id, test_id, first_name, answer):
     cnt = 0
     for test in tests:
         test = test.split()
-        if test[0] == test_id:
+        if test[0] == str(test_id):
            for i in range(min(len(test[1]), answer)):
                if test[1][i] == answer[i]:
                    cnt += 1
