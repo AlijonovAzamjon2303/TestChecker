@@ -20,7 +20,7 @@ async def start_cmd(message: Message):
     user_id = message.from_user.id
     user_first_name = message.from_user.first_name
     await message.answer(f"Assalomu alaykum {user_first_name} sizning id: {user_id}")
-    await message.answer("Quyidagi buyruqlardan birini tanlang\n/add_test\n/check_test")
+    await message.answer("Quyidagi buyruqlardan birini tanlang\n/add_test")
     if user_id in ADMINS:
         await message.answer("\n/show_all_test\n")
 
@@ -45,9 +45,6 @@ async def show_acts(message: Message):
             if act.split()[1] == cmd[1]:
                 ans += act
     await message.answer(ans)
-
-
-
 
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
@@ -77,6 +74,11 @@ async def save_test(message: Message):
 @dp.message()
 async def check_ans(message: Message):
     ans = message.text.split()
+    if len(ans) == 1:
+        await message.answer("Javoblarni quyidagi holatda yuboring"
+                             "test_id test_kalitlari"
+                             "12 abcd")
+        return
     chat_id = message.from_user.id
     test_id = ans[0]
     first_name = message.from_user.first_name
