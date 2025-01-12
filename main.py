@@ -33,9 +33,18 @@ async def clear(message: Message):
 
 @dp.message(Command("show_all_act"))
 async def show_acts(message: Message):
+    # Servisdan ma'lumotlarni olamiz
     acts = await Services.show_all_act()
 
-    await message.answer(acts, parse_mode="Markdown")
+    # Maxsus belgilarni qochirish (escape qilish)
+    escaped_acts = acts.replace('\\', '\\\\') \
+                       .replace('_', '\\_') \
+                       .replace('*', '\\*') \
+                       .replace('`', '\\`')
+
+    # Matnni Markdown formatida yuboramiz
+    await message.answer(f"```\n{escaped_acts}\n```", parse_mode="Markdown")
+
 
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
