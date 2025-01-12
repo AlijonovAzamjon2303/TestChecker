@@ -31,13 +31,6 @@ async def clear(message: Message):
         if ans == 0:
             await message.answer("A'zamjon baza tozalandi")
 
-@dp.message(Command("show_all_act"))
-async def show_acts(message: Message):
-
-
-
-
-
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
     if message.from_user.id in ADMINS:
@@ -47,7 +40,6 @@ async def add_test_cmd(message: Message):
 
 @dp.message(Command("show_all_test"))
 async def show_all(message: Message):
-
     await message.answer_document(Services.path_act)
 
 @dp.message(lambda message: message.from_user.id in ADMINS)
