@@ -65,7 +65,7 @@ async def add_test_cmd(message: Message):
         await message.answer("@AzamjonAlijonov bilan bog'laning")
         return
 
-    test_key = message.split()
+    test_key = message.text.split()
     if len(test_key) == 1:
         await message.answer("/help bo'limidagi yo'riqnomadan foydalaning")
     else:
