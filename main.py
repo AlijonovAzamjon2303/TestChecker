@@ -25,7 +25,7 @@ async def start_cmd(message: Message):
                          f"test_id test_kalitlari\n\n")
     if user_id in ADMINS:
         await message.answer(f"{user_first_name} siz botda qo'shimcha funksiyalardan foydalanishingiz mumkin\n"
-                             f"/add_test\n"
+                             f"/add_test test_kalitlari\n"
                              f"bu bo'limda faqat test kalitlarini ketma-ket kiritib borasiz\n"
                              f"Quyidagi shablon\n"
                              f"abcd\n"
@@ -61,10 +61,17 @@ async def show_acts(message: Message):
 
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
-    if message.from_user.id in ADMINS:
-        await message.answer("1a2b3c4d ... kabi test javoblarini kiriting")
-    else:
+    if message.from_user.id not in ADMINS:
         await message.answer("@AzamjonAlijonov bilan bog'laning")
+        return
+
+    test_key = message.split()
+    if len(test_key) == 1:
+        await message.answer("/help bo'limidagi yo'riqnomadan foydalaning")
+    else:
+        test_id = await Services.add_test(test_key[1])
+        await message.answer(f"{test_id} id bilan test muvaffaqiyatli qo'shildi")
+
 
 @dp.message(Command("show_all_test"))
 async def show_all(message: Message):
