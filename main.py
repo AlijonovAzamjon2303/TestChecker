@@ -78,18 +78,18 @@ async def show_all(message: Message):
     tests = await Services.show_all_test()
     await message.answer(f"{tests}")
 
-@dp.message(lambda message: message.from_user.id in ADMINS)
-async def save_test(message: Message):
-    test_keys = message.text.strip()
-    print(f"Admin test javoblari: {test_keys}")
-
-    try:
-        test_id = await Services.add_test(test_keys)
-        print(f"Test ID: {test_id}")
-        await message.answer(f"Test {test_id} bilan saqlandi")
-    except Exception as e:
-        print(f"Xatolik: {e}")
-        await message.answer("Testni saqlashda xatolik yuz berdi!")
+# @dp.message(lambda message: message.from_user.id in ADMINS)
+# async def save_test(message: Message):
+#     test_keys = message.text.strip()
+#     print(f"Admin test javoblari: {test_keys}")
+#
+#     try:
+#         test_id = await Services.add_test(test_keys)
+#         print(f"Test ID: {test_id}")
+#         await message.answer(f"Test {test_id} bilan saqlandi")
+#     except Exception as e:
+#         print(f"Xatolik: {e}")
+#         await message.answer("Testni saqlashda xatolik yuz berdi!")
 
 @dp.message()
 async def check_ans(message: Message):
