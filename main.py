@@ -15,14 +15,27 @@ dp = Dispatcher()
 
 ADMINS = [6335120359]
 
-@dp.message(Command("start"))
+@dp.message(Command(commands=["start", "help"]))
 async def start_cmd(message: Message):
     user_id = message.from_user.id
     user_first_name = message.from_user.first_name
-    await message.answer(f"Assalomu alaykum {user_first_name} sizning id: {user_id}")
-    await message.answer("Quyidagi buyruqlardan birini tanlang\n/add_test")
+    await message.answer(f"Assalomu alaykum {user_first_name} sizning id: {user_id}"
+                         f"Siz bu bot orqali o'z testingizni tekshirib olishingiz mumkin"
+                         f"Quyidagi shablonda xabar jo'nating"
+                         f"test_id test_kalitlari")
     if user_id in ADMINS:
-        await message.answer("\n/show_all_test\n")
+        await message.answer(f"{user_first_name} siz botda qo'shimcha funksiyalardan foydalanishingiz mumkin"
+                             f"/add_test"
+                             f"bu bo'limda faqat test kalitlarini ketma-ket kiritib borasiz"
+                             f"Quyidagi shablon"
+                             f"abcd"
+                             f"Keyin bot sizga alohida test_id beradi uni o'quvchilarga aytasiz\n"
+                             f"/show_all_test"
+                             f"Bu siz qo'shgan barcha testlarni test_id va kalitlarini beradi\n"
+                             f"/show_all_act"
+                             f"Bu bo'lim bo'lsa sizga botga barcha javob jo'natganlar haqida ma'lumot beradi\n"
+                             f"/show_all_act test_id"
+                             f"Bu bo'lim bo'lsa ma'lum test_id ga javob jo'natganlar haqida aytadi")
 
 @dp.message(Command("clear"))
 async def clear(message: Message):
