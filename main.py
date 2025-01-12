@@ -19,23 +19,23 @@ ADMINS = [6335120359]
 async def start_cmd(message: Message):
     user_id = message.from_user.id
     user_first_name = message.from_user.first_name
-    await message.answer(f"Assalomu alaykum {user_first_name} sizning id: {user_id}"
-                         f"Siz bu bot orqali o'z testingizni tekshirib olishingiz mumkin"
-                         f"Quyidagi shablonda xabar jo'nating"
-                         f"test_id test_kalitlari")
+    await message.answer(f"Assalomu alaykum {user_first_name} sizning id: {user_id}\n"
+                         f"Siz bu bot orqali o'z testingizni tekshirib olishingiz mumkin\n"
+                         f"Quyidagi shablonda xabar jo'nating\n"
+                         f"test_id test_kalitlari\n\n")
     if user_id in ADMINS:
-        await message.answer(f"{user_first_name} siz botda qo'shimcha funksiyalardan foydalanishingiz mumkin"
-                             f"/add_test"
-                             f"bu bo'limda faqat test kalitlarini ketma-ket kiritib borasiz"
-                             f"Quyidagi shablon"
-                             f"abcd"
+        await message.answer(f"{user_first_name} siz botda qo'shimcha funksiyalardan foydalanishingiz mumkin\n"
+                             f"/add_test\n"
+                             f"bu bo'limda faqat test kalitlarini ketma-ket kiritib borasiz\n"
+                             f"Quyidagi shablon\n"
+                             f"abcd\n"
                              f"Keyin bot sizga alohida test_id beradi uni o'quvchilarga aytasiz\n"
-                             f"/show_all_test"
+                             f"/show_all_test\n"
                              f"Bu siz qo'shgan barcha testlarni test_id va kalitlarini beradi\n"
-                             f"/show_all_act"
+                             f"/show_all_act\n"
                              f"Bu bo'lim bo'lsa sizga botga barcha javob jo'natganlar haqida ma'lumot beradi\n"
-                             f"/show_all_act test_id"
-                             f"Bu bo'lim bo'lsa ma'lum test_id ga javob jo'natganlar haqida aytadi")
+                             f"/show_all_act test_id\n"
+                             f"Bu bo'lim bo'lsa ma'lum test_id ga javob jo'natganlar haqida aytadi\n")
 
 @dp.message(Command("clear"))
 async def clear(message: Message):
@@ -73,24 +73,24 @@ async def show_all(message: Message):
 
 @dp.message(lambda message: message.from_user.id in ADMINS)
 async def save_test(message: Message):
-    test_keys = message.text.strip()  # Test javoblarini olish
-    print(f"Admin test javoblari: {test_keys}")  # Admin tomonidan yuborilgan test javoblarini konsolga chiqarish
+    test_keys = message.text.strip()
+    print(f"Admin test javoblari: {test_keys}")
 
     try:
-        test_id = await Services.add_test(test_keys)  # Testni saqlash
-        print(f"Test ID: {test_id}")  # Yangi test ID sini konsolga chiqarish
-        await message.answer(f"Test {test_id} bilan saqlandi")  # Adminni xabardor qilish
+        test_id = await Services.add_test(test_keys)
+        print(f"Test ID: {test_id}")
+        await message.answer(f"Test {test_id} bilan saqlandi")
     except Exception as e:
-        print(f"Xatolik: {e}")  # Xatolik yuz bersa, uni konsolga chiqarish
+        print(f"Xatolik: {e}")
         await message.answer("Testni saqlashda xatolik yuz berdi!")
 
 @dp.message()
 async def check_ans(message: Message):
     ans = message.text.split()
     if len(ans) == 1:
-        await message.answer("Javoblarni quyidagi holatda yuboring"
-                             "test_id test_kalitlari"
-                             "12 abcd")
+        await message.answer("Javoblarni quyidagi holatda yuboring\n"
+                             "test_id test_kalitlari\n"
+                             "12 abcd\n")
         return
     chat_id = message.from_user.id
     test_id = ans[0]
