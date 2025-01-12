@@ -34,7 +34,7 @@ async def clear(message: Message):
 @dp.message(Command("show_all_act"))
 async def show_acts(message: Message):
     await message.answer_document(
-        document=FSInputFile(Services.path),
+        document=FSInputFile(Services.path_act),
         caption="Mana,  fayli."
     )
 
