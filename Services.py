@@ -36,14 +36,12 @@ async def add_ans(chat_id, test_id, first_name, answer):
     with open(path, "r") as file:
         tests = file.readlines()
 
-    answer = answer.split()
-
     cnt = 0
     for test in tests:
         test = test.split()
         if test[0] == answer[0]:
-           for i in range(min(len(test[1]), answer[1])):
-               if test[1][i] == answer[1][i]:
+           for i in range(min(len(test[1]), answer)):
+               if test[1][i] == answer[i]:
                    cnt += 1
 
     with open(path_act, "a") as file:
