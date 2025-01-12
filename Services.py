@@ -47,7 +47,7 @@ async def add_ans(chat_id, test_id, first_name, answer):
                    cnt += 1
 
     with open(path_act, "a") as file:
-        file.write(f"{chat_id} {test_id} {first_name} {answer[1]} {cnt}")
+        file.write(f"{chat_id} {test_id} {first_name} {answer} {cnt}")
 
     return cnt
 

@@ -68,7 +68,7 @@ async def check_ans(message: Message):
     chat_id = message.from_user.id
     test_id = ans[0]
     first_name = message.from_user.first_name
-    cnt = await Services.add_ans(message.from_user.id, test_id, first_name, ans[1])
+    cnt = await Services.add_ans(chat_id, test_id, first_name, ans[1])
 
     await message.answer(f"Humatli {first_name} siz {test_id} id li tesdan {cnt} ta topdingiz")
 
