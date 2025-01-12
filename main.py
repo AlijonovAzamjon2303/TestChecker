@@ -46,6 +46,7 @@ async def clear(message: Message):
 
 @dp.message(Command("show_all_act"))
 async def show_acts(message: Message):
+    path_help = "helper.txt"
     cmd = message.text.split()
     ans = ""
     acts = await Services.show_all_act()
@@ -57,7 +58,11 @@ async def show_acts(message: Message):
         for act in acts:
             if act.split()[1] == cmd[1]:
                 ans += act
+    with open(path_help, "w") as file:
+        file.write(ans)
+
     await message.answer(ans)
+    await message.answer_document(FSInputFile(path_help), caption="Mana file ko'rinishida")
 
 @dp.message(Command("add_test"))
 async def add_test_cmd(message: Message):
