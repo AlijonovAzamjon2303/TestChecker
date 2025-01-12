@@ -4,7 +4,7 @@ import os
 
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
-from aiogram.types import Message
+from aiogram.types import Message, FSInputFile
 
 import Services
 
@@ -33,7 +33,10 @@ async def clear(message: Message):
 
 @dp.message(Command("show_all_act"))
 async def show_acts(message: Message):
-   await message.answer_document(Services.path_act)
+    await message.answer_document(
+        document=FSInputFile(Services.path),
+        caption="Mana,  fayli."
+    )
 
 
 
