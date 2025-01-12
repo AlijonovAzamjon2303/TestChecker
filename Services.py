@@ -50,10 +50,8 @@ async def add_ans(chat_id, test_id, first_name, answer):
     return cnt
 
 async def show_all_act():
-    acts = ""
+    acts = []
     with open(path_act, "r") as file:
-        for line in file.readlines():
-            line = line.strip()
-            acts += line + "\n"
+        acts = file.readlines()
 
     return acts

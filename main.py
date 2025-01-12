@@ -33,8 +33,18 @@ async def clear(message: Message):
 
 @dp.message(Command("show_all_act"))
 async def show_acts(message: Message):
+    cmd = message.text.split()
+    ans = ""
     acts = await Services.show_all_act()
-    await message.answer(acts)
+
+    if len(cmd) == 1:
+        for act in acts:
+            ans += act
+    else:
+        for act in acts:
+            if act.split()[1] == cmd[1]:
+                ans += act
+    await message.answer(ans)
 
 
 
